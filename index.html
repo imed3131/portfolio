@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Megdad Imed - Backend Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,45 +13,32 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --primary-color: #0ea5e9;
+            --secondary-color: #1e293b;
+            --accent-color: #10b981;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --border-color: #475569;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: #333;
             overflow-x: hidden;
         }
 
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
-        }
-
-        /* Header & Navigation */
-        header {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
@@ -57,28 +46,22 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        nav {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #60a5fa;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #60a5fa; }
-            to { text-shadow: 0 0 20px #60a5fa, 0 0 30px #60a5fa; }
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -88,299 +71,384 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: #60a5fa;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #60a5fa;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0284c7;
             transform: translateY(-2px);
         }
 
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 100px 2rem 50px;
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        .code-window {
+            background: var(--bg-secondary);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .window-header {
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .control.red { background: #ef4444; }
+        .control.yellow { background: #f59e0b; }
+        .control.green { background: #10b981; }
+
+        .window-title {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .line-number {
+            color: var(--text-secondary);
+            width: 2rem;
+            text-align: right;
+            margin-right: 1rem;
+            user-select: none;
+        }
+
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: var(--text-secondary); }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
         .container {
             max-width: 1200px;
-            width: 100%;
             margin: 0 auto;
         }
 
-        /* Hero Section */
-        .hero {
+        .section-header {
             text-align: center;
-            color: white;
+            margin-bottom: 4rem;
         }
 
-        .hero h1 {
-            font-size: 4rem;
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            opacity: 0;
-            animation: slideInUp 1s ease forwards 0.5s;
+            color: var(--text-primary);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: slideInUp 1s ease forwards 0.8s;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #2196F3, #64b5f6);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: slideInUp 1s ease forwards 1.1s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.4);
-        }
-
-        /* Switching Text Animation */
-        .switching-text {
-            position: relative;
-            display: inline-block;
-        }
-
-        .animated-part {
-            position: relative;
-            display: inline-block;
-            height: 1.2em;
-            overflow: visible;
-            vertical-align: baseline;
-            min-width: 500px;
-            width: 500px;
-        }
-
-        .text-switch {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 500px;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateY(100%);
-        }
-
-        .text-switch:nth-child(1) {
-            animation: showText1 10s infinite;
-        }
-
-        .text-switch:nth-child(2) {
-            animation: showText2 10s infinite;
-        }
-
-        @keyframes showText1 {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            40% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            50% {
-                opacity: 0;
-                transform: translateY(-100%);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100%);
-            }
-        }
-
-        @keyframes showText2 {
-            0% {
-                opacity: 0;
-                transform: translateY(100%);
-            }
-            50% {
-                opacity: 0;
-                transform: translateY(100%);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            90% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100%);
-            }
-        }
-
-        /* Writing Animation */
-        .typing-animation {
-            border-right: 2px solid #60a5fa;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-        }
-
-        .text-switch.typing-animation:nth-child(1) {
-            animation: showText1 10s infinite, typeWriter1 10s infinite;
-        }
-
-        .text-switch.typing-animation:nth-child(2) {
-            animation: showText2 10s infinite, typeWriter2 10s infinite;
-        }
-
-        @keyframes typeWriter1 {
-            0% { width: 0; }
-            15% { width: 12ch; }
-            40% { width: 12ch; }
-            50% { width: 12ch; }
-            100% { width: 12ch; }
-        }
-
-        @keyframes typeWriter2 {
-            0% { width: 0; }
-            50% { width: 0; }
-            60% { width: 0; }
-            75% { width: 17ch; }
-            90% { width: 17ch; }
-            100% { width: 17ch; }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Card Styles */
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 1rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
-        .skill-item {
-            text-align: center;
+        .skill-category {
+            background: var(--bg-card);
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(100, 181, 246, 0.1) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.5s ease;
-        }
-
-        .skill-item:hover::before {
-            transform: scale(1);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
+        .skill-category h3 {
+            color: var(--primary-color);
             margin-bottom: 1rem;
-            color: #60a5fa;
-            animation: bounce 2s infinite;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .project-header {
+            padding: 2rem 2rem 0;
+        }
+
+        .project-header h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .project-stat span {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         /* Experience Section */
         .timeline {
             position: relative;
-            margin: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .timeline::before {
@@ -390,393 +458,894 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #60a5fa;
+            background: var(--border-color);
             transform: translateX(-50%);
         }
 
-        /* Timeline Animation on Scroll */
         .timeline-item {
             position: relative;
-            margin: 2rem 0;
-            width: 45%;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.animate-in {
-            opacity: 1;
-            transform: translateX(0);
+            margin-bottom: 2rem;
+            width: 50%;
         }
 
         .timeline-item:nth-child(odd) {
             left: 0;
-            transform: translateX(-50px);
-        }
-
-        .timeline-item:nth-child(odd).animate-in {
-            transform: translateX(0);
+            padding-right: 2rem;
         }
 
         .timeline-item:nth-child(even) {
-            left: 55%;
-            transform: translateX(50px);
-        }
-
-        .timeline-item:nth-child(even).animate-in {
-            transform: translateX(0);
+            left: 50%;
+            padding-left: 2rem;
         }
 
         .timeline-content {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
             padding: 2rem;
-            border-radius: 15px;
             position: relative;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
-        .timeline-content:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .timeline-item::before {
+        .timeline-content::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #60a5fa;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -20px;
+            border-left-color: var(--bg-card);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -20px;
+            border-right-color: var(--bg-card);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
             border-radius: 50%;
-            top: 30px;
-            box-shadow: 0 0 20px #60a5fa;
-            animation: pulse 2s infinite;
+            transform: translate(-50%, -50%);
+            border: 4px solid var(--bg-primary);
         }
 
-        .timeline-item:nth-child(odd)::before {
-            right: -10px;
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .timeline-item:nth-child(even)::before {
-            left: -10px;
+        .timeline-title {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 20px #60a5fa; }
-            50% { box-shadow: 0 0 30px #60a5fa, 0 0 40px #60a5fa; }
-            100% { box-shadow: 0 0 20px #60a5fa; }
+        .timeline-company {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
 
-        /* Footer */
-        footer {
-            background: rgba(15, 23, 42, 0.95);
-            color: white;
+        .timeline-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-description li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .timeline-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .contact-form h3 {
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
             text-align: center;
-            padding: 3rem 2rem;
-            backdrop-filter: blur(10px);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.3rem;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem 1rem;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .social-links {
-            margin: 2rem 0;
+        .footer-contact h3 {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
         }
 
-        .social-links a {
-            display: inline-block;
-            margin: 0 1rem;
-            color: #60a5fa;
-            font-size: 1.5rem;
+        .footer-info-list {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .footer-info-item i {
+            color: var(--primary-color);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-social {
+            margin-bottom: 2rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
-            transform: translateY(-5px) scale(1.2);
+        .footer-social-links a:hover {
+            background: var(--primary-color);
             color: white;
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+
+        .footer-social-links a i {
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .footer-bottom p {
+            margin: 0.5rem 0;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
-                flex-direction: column;
-                gap: 1rem;
+                display: none;
             }
 
-            .hero h1 {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
 
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .timeline::before {
-                left: 20px;
+                left: 2rem;
             }
 
             .timeline-item {
-                width: calc(100% - 60px);
-                left: 60px !important;
-                transform: translateX(-30px) !important;
+                width: 100%;
+                left: 0 !important;
+                padding-left: 4rem !important;
+                padding-right: 0 !important;
             }
 
-            .timeline-item.animate-in {
-                transform: translateX(0) !important;
+            .timeline-item .timeline-content::before {
+                left: -20px !important;
+                border-right-color: var(--bg-card) !important;
+                border-left-color: transparent !important;
             }
 
-            .timeline-item::before {
-                left: -30px !important;
+            .timeline-dot {
+                left: 2rem !important;
             }
 
-            .skills-grid {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-info-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .footer-social-links {
+                gap: 1rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Text Styles */
-        h1, h2, h3 {
-            color: white;
-            margin-bottom: 1rem;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            width: 100px;
-            height: 3px;
-            background: #60a5fa;
-            transform: translateX(-50%);
+        .typing {
+            border-right: 2px solid var(--primary-color);
+            animation: blink 1s infinite;
         }
 
-        p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.8;
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background Particles -->
-    <div class="particles" id="particles"></div>
-
-    <header>
-        <nav>
-            <div class="logo">Portfolio</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo code-font">{'<Imed />'}</div>
             <ul class="nav-links">
-                <li><a href="#description">About</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#motivation">Motivation</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <section id="description" class="hero">
-        <div class="container">
-            <h1>
-                <span class="switching-text">
-                    Hi, I am 
-                    <span class="animated-part">
-                        <span class="text-switch typing-animation">Megdad Imed</span>
-                        <span class="text-switch typing-animation">Backend Developer</span>
-                    </span>
-                </span>
-            </h1>
-            <p>Backend Developer & Computer Science Student</p>
-            <div class="card" style="margin-top: 3rem; text-align: left;">
-                <p>As a fifth-year Computer Science student at ESI Algers, I've immersed myself in diverse technological domains, tackling challenging projects that have shaped my expertise. My journey has led me to specialize in backend development, where I find passion in building robust and scalable systems. Recently, I've been diving into the fascinating world of deep learning, recognizing its transformative potential in modern technology. I'm driven by continuous learning and seek opportunities that foster professional growth while allowing me to refine my technical skills through hands-on experience.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Megdad Imed</h1>
+                <p class="subtitle">Backend Developer & AI Enthusiast</p>
+                <p class="description">
+                    Computer Science student at ESI, passionate about building robust backend systems 
+                    with Python, FastAPI, Django, and exploring the frontiers of deep learning and AI.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1.5M+</span>
+                        <span class="stat-label">Records Processed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">70%</span>
+                        <span class="stat-label">Time Saved</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="mailto:megdad@esi.dz" title="Email">
+                        Email
+                    </a>
+                    <a href="https://linkedin.com/in/megdad-imed-11715730a" title="LinkedIn" target="_blank">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/imed3131" title="GitHub" target="_blank">
+                        GitHub
+                    </a>
+                    <a href="https://imed3131.github.io/portfolio/" title="Portfolio" target="_blank">
+                        Portfolio
+                    </a>
+                </div>
             </div>
-            <a href="#skills" class="cta-button">Explore My Work</a>
+
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="control red"></div>
+                            <div class="control yellow"></div>
+                            <div class="control green"></div>
+                        </div>
+                        <div class="window-title code-font">backend_developer.py</div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">1</span>
+                            <span class="keyword">class</span> <span class="function">BackendDeveloper</span>:
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">2</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(self):
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">3</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="string">"Megdad Imed"</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">4</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.skills = [
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">5</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"FastAPI"</span>, <span class="string">"Django"</span>, <span class="string">"Python"</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">6</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">7</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.passion = <span class="string">"AI & Deep Learning"</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">8</span>
+                            <span class="comment"># Ready to build amazing systems!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2>My Skills</h2>
+            <div class="section-header">
+                <h2>Technical Arsenal</h2>
+                <p>Technologies and tools I use to bring ideas to life</p>
+            </div>
+
             <div class="skills-grid">
-                <div class="skill-item card">
-                    <div class="skill-icon">🐍</div>
-                    <h3>Python Development</h3>
-                    <p>Building robust backend systems and APIs with Python frameworks</p>
+                <div class="skill-category">
+                    <h3><span>🖥️</span> Backend Development</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">OAuth2</span>
+                        <span class="skill-tag">Celery</span>
+                        <span class="skill-tag">Microservices</span>
+                    </div>
                 </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">☕</div>
-                    <h3>Java Programming</h3>
-                    <p>Enterprise-level application development with Java</p>
+
+                <div class="skill-category">
+                    <h3><span>🗄️</span> Databases & Storage</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">MariaDB</span>
+                        <span class="skill-tag">Elasticsearch</span>
+                    </div>
                 </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">🔗</div>
-                    <h3>RESTful APIs</h3>
-                    <p>Designing and developing scalable REST APIs with authentication</p>
+
+                <div class="skill-category">
+                    <h3><span>⚙️</span> DevOps & Tools</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Bash</span>
+                    </div>
                 </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">🗄️</div>
-                    <h3>Database Management</h3>
-                    <p>Working with both SQL and NoSQL databases for data persistence</p>
+
+                <div class="skill-category">
+                    <h3><span>🧠</span> AI & Data Science</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">GANs</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                    </div>
                 </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">🔒</div>
-                    <h3>Authentication & Security</h3>
-                    <p>Implementing JWT, OAuth2, and secure authorization systems</p>
+
+                <div class="skill-category">
+                    <h3><span>💻</span> Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
                 </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">🧠</div>
-                    <h3>Deep Learning</h3>
-                    <p>Exploring GAN architectures and neural network implementations</p>
-                </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">🐳</div>
-                    <h3>DevOps Tools</h3>
-                    <p>Container orchestration with Docker and version control with Git</p>
-                </div>
-                <div class="skill-item card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>Agile Methodologies</h3>
-                    <p>Problem-solving and collaborative development approaches</p>
+
+                <div class="skill-category">
+                    <h3><span>🕷️</span> Web Scraping & Automation</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">BeautifulSoup</span>
+                        <span class="skill-tag">Selenium</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>A showcase of my technical expertise and problem-solving abilities</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Chess Puzzle Generator</h3>
+                        <div class="project-meta">2025 • AI/Machine Learning</div>
+                        <p class="project-description">
+                            Built an innovative GAN-based system that processes over 1.5 million Lichess records 
+                            to generate realistic checkmate puzzles with 50% accuracy, revolutionizing chess 
+                            training through AI.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>📊</span>
+                                1.5M+ Records
+                            </div>
+                            <div class="project-stat">
+                                <span>🎯</span>
+                                50% Accuracy
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">GANs</span>
+                        <span class="tech-tag">Keras</span>
+                        <span class="tech-tag">Data Processing</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Sonatrach Reporting System</h3>
+                        <div class="project-meta">2025 • Enterprise Dashboard</div>
+                        <p class="project-description">
+                            Developed a real-time automated KPI tracking system for drilling operations, 
+                            monitoring cost, deadlines, and quality metrics. Successfully reduced manual 
+                            reporting time by 70% through intelligent data extraction.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>⏰</span>
+                                70% Time Saved
+                            </div>
+                            <div class="project-stat">
+                                <span>📈</span>
+                                Real-time KPIs
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Data Analytics</span>
+                        <span class="tech-tag">Dashboard</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>MaklaEpress Food Ordering App</h3>
+                        <div class="project-meta">2024 • Full-Stack Web Application</div>
+                        <p class="project-description">
+                            Created a comprehensive food ordering platform for restaurants with secure 
+                            authentication, order management, and integrated payment workflows. 
+                            Built with modern backend architecture for scalability.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>🍽️</span>
+                                Restaurant Platform
+                            </div>
+                            <div class="project-stat">
+                                <span>🔒</span>
+                                Secure Auth
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">Payment Integration</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>PDF Articles Management System</h3>
+                        <div class="project-meta">2023 • Document Management</div>
+                        <p class="project-description">
+                            Built a powerful web application for managing 500+ PDF documents with 
+                            advanced search capabilities. Integrated Elasticsearch to achieve 
+                            100x faster search performance across the entire document collection.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>📄</span>
+                                500+ PDFs
+                            </div>
+                            <div class="project-stat">
+                                <span>🔍</span>
+                                100x Faster Search
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Document Processing</span>
+                        <span class="tech-tag">Search Engine</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Ikhtiar Bank Comparison Website</h3>
+                        <div class="project-meta">2023 • FinTech Platform</div>
+                        <p class="project-description">
+                            Developed a comprehensive platform to compare loan and banking offers 
+                            in Algeria, helping users make informed financial decisions through 
+                            optimized loan option presentations and data aggregation.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>🏦</span>
+                                Banking Comparison
+                            </div>
+                            <div class="project-stat">
+                                <span>📊</span>
+                                Data Aggregation
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Financial APIs</span>
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Web Scraping</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Auto-View HR Management</h3>
+                        <div class="project-meta">2024 • ThynkTech Internship</div>
+                        <p class="project-description">
+                            Built the complete backend infrastructure for an HR application focused 
+                            on job management. Optimized RESTful APIs for performance and implemented 
+                            secure authentication with JWT and OAuth2.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span>👥</span>
+                                HR Platform
+                            </div>
+                            <div class="project-stat">
+                                <span>🚀</span>
+                                Optimized APIs
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">OAuth2</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
     <section id="experience">
         <div class="container">
-            <h2>Experience & Projects</h2>
+            <div class="section-header">
+                <h2>Professional Journey</h2>
+                <p>My path in backend development and software engineering</p>
+            </div>
+
             <div class="timeline">
-                <div class="timeline-item card">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Backend Developer Intern</h3>
-                        <p><strong>Thynk Tech, Algers • July 2024 - September 2024</strong></p>
-                        <p>Contributed to the backend development of "Auto-View," a web application designed to support HR professionals in efficiently handling job applications and streamlining recruitment processes.</p>
+                        <div class="timeline-date">2025 – Present</div>
+                        <div class="timeline-title">Freelance Backend Developer</div>
+                        <div class="timeline-company">Self-employed • Remote</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Design and deploy scalable backend systems tailored to diverse client requirements</li>
+                                <li>Develop end-to-end backend solutions using FastAPI and Django frameworks</li>
+                                <li>Implement secure authentication, database optimization, and API integration</li>
+                                <li>Deliver high-quality, maintainable code for various business domains</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item card">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Chess Puzzle Generator</h3>
-                        <p><strong>Deep Learning Project • 2024</strong></p>
-                        <p>Developed a deep learning model using GAN architecture to generate chess puzzles based on specific tactical patterns, combining my interest in AI with strategic game analysis.</p>
+                        <div class="timeline-date">Jul 2024 – Sep 2024</div>
+                        <div class="timeline-title">Backend Developer - Intern</div>
+                        <div class="timeline-company">ThynkTech • Algiers, Algeria</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Built comprehensive backend infrastructure for Auto-View HR application</li>
+                                <li>Optimized RESTful APIs for enhanced performance and reliability</li>
+                                <li>Implemented secure authentication systems using JWT and OAuth2 protocols</li>
+                                <li>Collaborated with frontend team to ensure seamless API integration</li>
+                                <li>Applied agile development methodologies and best coding practices</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item card">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Sonatrach Reporting System</h3>
-                        <p><strong>Enterprise Project • 2023</strong></p>
-                        <p>Created a comprehensive reporting platform that delivers real-time updates to managers regarding soil investigation status, improving operational efficiency and decision-making processes.</p>
-                    </div>
-                </div>
-                <div class="timeline-item card">
-                    <div class="timeline-content">
-                        <h3>PDF Article Reader Platform</h3>
-                        <p><strong>Web Application • 2023</strong></p>
-                        <p>Built a specialized website for reading and managing PDF articles with database storage capabilities, enhancing document accessibility and organization.</p>
-                    </div>
-                </div>
-                <div class="timeline-item card">
-                    <div class="timeline-content">
-                        <h3>Bank Comparison Website</h3>
-                        <p><strong>Financial Platform • 2022</strong></p>
-                        <p>Developed a comprehensive platform where users can discover and compare various bank offers, helping customers make informed financial decisions through detailed comparisons.</p>
-                    </div>
-                </div>
-                <div class="timeline-item card">
-                    <div class="timeline-content">
-                        <h3>Computer Science Studies</h3>
-                        <p><strong>ESI Algers • 2021 - 2025</strong></p>
-                        <p>Pursuing 3 CS in Information Systems at École Nationale Supérieure d'Informatique, focusing on backend development and emerging technologies.</p>
+                        <div class="timeline-date">2020 – 2025</div>
+                        <div class="timeline-title">Computer Science Student</div>
+                        <div class="timeline-company">École Supérieure de l'Informatique (ESI) • Algiers</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Specialized in backend development and artificial intelligence</li>
+                                <li>Completed advanced coursework in algorithms, data structures, and system design</li>
+                                <li>Developed multiple full-stack projects showcasing technical expertise</li>
+                                <li>Active participant in coding competitions and tech communities</li>
+                                <li>Research focus on deep learning and generative AI applications</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="motivation">
+    <!-- Contact Section -->
+    <section id="contact">
         <div class="container">
-            <h2>My Motivation</h2>
-            <div class="card">
-                <p>My passion for technology stems from its incredible ability to solve complex problems and create meaningful impact. As I advance through my computer science journey, I'm constantly amazed by how backend systems form the backbone of digital innovation, enabling seamless user experiences and robust data management.</p>
-                <br>
-                <p>What drives me most is the continuous evolution in our field - from mastering traditional backend architectures to exploring the cutting-edge possibilities of deep learning. Each project I undertake is an opportunity to push boundaries, learn something new, and contribute to solutions that matter.</p>
-                <br>
-                <p>I'm motivated by the prospect of joining dynamic teams where I can grow professionally while contributing my skills to build systems that make a difference. The intersection of practical problem-solving and innovative technology is where I thrive.</p>
+            <div class="section-header">
+                <h2>Let's Build Something Amazing</h2>
+                <p>Ready to collaborate on your next backend project</p>
+            </div>
+
+            <div class="contact-form-container">
+                <div class="contact-form">
+                    <h3>Send me a message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your project or just say hello!" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <span>📨</span>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <h3>Get In Touch</h3>
-            <div class="social-links">
-                <a href="mailto:li_megdad@esi.dz">📧</a>
-                <a href="https://linkedin.com/in/megdad-imed-11715730a">💼</a>
-                <a href="https://imed3131.github.io/portfolio/">🌐</a>
-                <a href="tel:+213698567597">📱</a>
+            <!-- Contact Information -->
+            <div class="footer-contact">
+                <h3>Get In Touch</h3>
+                
+                <div class="footer-info-list">
+                    <div class="footer-info-item">
+                        <span class="icon">📧</span>
+                        <span>megdad@esi.dz</span>
+                    </div>
+                    
+                    <div class="footer-info-item">
+                        <span class="icon">📱</span>
+                        <span>+213 698 567 597</span>
+                    </div>
+                    
+                    <div class="footer-info-item">
+                        <span class="icon">📍</span>
+                        <span>Algiers, Algeria</span>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="footer-social">
+                    <div class="footer-social-links">
+                        <a href="mailto:megdad@esi.dz" title="Email">
+                            <span>📧</span>
+                        </a>
+                        <a href="https://linkedin.com/in/megdad-imed-11715730a" title="LinkedIn" target="_blank">
+                            <span>💼</span>
+                        </a>
+                        <a href="https://github.com/imed3131" title="GitHub" target="_blank">
+                            <span>💻</span>
+                        </a>
+                        <a href="https://imed3131.github.io/portfolio/" title="Portfolio" target="_blank">
+                            <span>🌐</span>
+                        </a>
+                        <a href="tel:+213698567597" title="Phone">
+                            <span>📞</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p>Email: li_megdad@esi.dz</p>
-            <p>Phone: +213 698 567 597</p>
-            <p>Location: Algers, Algeria</p>
-            <p>Portfolio: https://imed3131.github.io/portfolio/</p>
-            <br>
-            <p>&copy; 2024 Megdad Imed. All rights reserved.</p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Megdad Imed. Built with passion for backend development and AI innovation.</p>
+                <p>Open to new opportunities and exciting collaborations.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Create animated particles
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particles.appendChild(particle);
-            }
-        }
-
-        // Animate timeline items on scroll
-        function animateTimelineOnScroll() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate-in');
-                        }, index * 200); // Stagger animation
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            timelineItems.forEach(item => {
-                observer.observe(item);
-            });
-        }
-
-        // Animate cards on scroll
-        function animateOnScroll() {
-            const cards = document.querySelectorAll('.card:not(.timeline-item .card)');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-        }
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -791,34 +1360,63 @@
             });
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(15, 23, 42, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.background = 'rgba(15, 23, 42, 0.95)';
-                header.style.boxShadow = 'none';
-            }
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link
+            const mailtoLink = `mailto:megdad@esi.dz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you for your message! Your email client should open now.');
+            
+            // Reset form
+            this.reset();
         });
 
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            animateOnScroll();
-            animateTimelineOnScroll();
+        // Typing animation for code window
+        function typeCode() {
+            const codeLines = document.querySelectorAll('.code-line');
+            codeLines.forEach((line, index) => {
+                line.style.opacity = '0';
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                    line.style.animation = 'fadeInUp 0.5s ease forwards';
+                }, index * 200);
+            });
+        }
+
+        // Initialize typing animation
+        window.addEventListener('load', () => {
+            setTimeout(typeCode, 1000);
         });
 
-        // Add floating animation to skill icons
-        document.querySelectorAll('.skill-icon').forEach((icon, index) => {
-            icon.style.animationDelay = (index * 0.2) + 's';
-        });
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        // Add stagger animation to timeline items
-        document.querySelectorAll('.timeline-item').forEach((item, index) => {
-            item.style.animationDelay = (index * 0.3) + 's';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
     </script>
-</body>
-</html>
