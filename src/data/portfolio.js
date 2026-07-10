@@ -15,7 +15,7 @@ export const profile = {
   phone: '+213 698 567 597',
   github: 'https://github.com/imed3131',
   linkedin: 'https://www.linkedin.com/in/megdad-imed-11715730a',
-  website: 'https://imed3131.github.io/portfolio/',
+  website: import.meta.env.VITE_SITE_URL || '',
 }
 
 export const about = {
