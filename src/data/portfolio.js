@@ -1,3 +1,5 @@
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 export const profile = {
   firstName: 'Megdad',
   lastName: 'Imed',
@@ -7,8 +9,8 @@ export const profile = {
   location: 'Algiers, Algeria',
   tagline: 'Transforms ideas into elegant solutions',
   subtitle: 'Building full-stack applications that connect technology with real impact',
-  photo: '/profile.svg',
-  cv: '/MEGDAD_Imed_CV.pdf',
+  photo: asset('profile.svg'),
+  cv: asset('projects/MEGDAD_Imed_CV.pdf'),
   email: 'megdad.officiel@gmail.com',
   phone: '+213 698 567 597',
   github: 'https://github.com/imed3131',
@@ -83,7 +85,7 @@ export const projects = [
     categories: ['web'],
     description:
       'Multi-vendor e-commerce marketplace connecting local Algerian merchants with buyers. Full-stack work covering vendor onboarding, product listings, order management, and a recommendation system for relevant products.',
-    image: '/projects/vestrend.png',
+    image: asset('projects/vestrend.png'),
     tags: ['Next.js', 'NestJS', 'Recommendations'],
     link: "https://vestrend.shop",
   },
@@ -94,7 +96,7 @@ export const projects = [
     categories: ['web'],
     description:
       'Classifieds-style marketplace for agriculture, inspired by Ouedkniss but focused on farms, produce, livestock, and agri equipment. Users browse stores and categories in Arabic and English, publish listings, and boost visibility through an internal paid-ads system for promoted placements.',
-    image: '/projects/agrinet.png',
+    image: asset('projects/agrinet.png'),
     tags: ['Marketplace', 'Classifieds', 'Paid Ads'],
     link: "https://frontend-agrinet.vercel.app/",
   },
@@ -105,7 +107,7 @@ export const projects = [
     categories: ['desktop'],
     description:
       'Desktop application for managing farms and tracking the full lifecycle of cattle — from breeding and pregnancy to calving. Includes an automated notification system that alerts farmers ahead of upcoming births so they can prepare in time.',
-    image: '/projects/farm_management.png',
+    image: asset('projects/farm_management.png'),
     tags: ['Desktop', 'Livestock', 'Notifications'],
     link: null,
   },
@@ -116,7 +118,7 @@ export const projects = [
     categories: ['ai-ml'],
     description:
       'Deep learning model that generates chess positions with a forced mate in one move. Built with a Generative Adversarial Network (GAN) trained to produce valid, tactically sharp board configurations.',
-    image: '/projects/mate-in-one.png',
+    image: asset('projects/mate-in-one.png'),
     tags: ['GAN', 'Deep Learning', 'Python'],
     link: null,
   },
@@ -127,7 +129,7 @@ export const projects = [
     categories: ['web'],
     description:
       'Real-time automated KPI tracking web system for drilling operations. Structured field-report data, cut manual reporting by 70%, and delivered interactive dashboards for project managers.',
-    image: '/projects/Repporting.png',
+    image: asset('projects/Repporting.png'),
     tags: ['Dashboards', 'KPI', 'Python', 'Web'],
     link: null,
   },
@@ -139,7 +141,7 @@ export const projects = [
     categories: ['mobile'],
     description:
       'Full-stack food ordering mobile application for restaurants. Backend with Django & PostgreSQL, Kotlin client, plus secure authentication, order management, and payment workflows.',
-    image: '/projects/maklaepress.jpg',
+    image: asset('projects/maklaepress.jpg'),
     tags: ['Django', 'PostgreSQL', 'Kotlin'],
     link: null,
   },
@@ -150,7 +152,7 @@ export const projects = [
     categories: ['web'],
     description:
       'Comparison website for loan and banking offers in Algeria. Backend API for financial data aggregation and a clear UI to help users select optimized loan options.',
-    image: '/projects/ikhtiar.jpg',
+    image: asset('projects/ikhtiar.jpg'),
     tags: ['Web', 'API', 'FinTech'],
     link: null,
   },
@@ -161,7 +163,7 @@ export const projects = [
     categories: ['web'],
     description:
       'Backend for a job-management web application. Optimized RESTful APIs for speed and scalability, with JWT and OAuth2 authentication for secure access.',
-    image: '/projects/autoview.png',
+    image: asset('projects/autoview.png'),
     tags: ['Backend', 'REST', 'JWT', 'OAuth2'],
     link: null,
   },
@@ -172,7 +174,7 @@ export const projects = [
     categories: ['ai-ml'],
     description:
       'Multi-warehouse management system built during the Ourquilane AI internship. Forecasts future demand from historical orders with a hybrid SARIMAX + XGBoost model, then allocates products across warehouses. Optimization methods evaluated: Genetic Algorithm, ILP, random search, exact solver, and greedy heuristic — with ILP selected for production.',
-    image: '/projects/warehouse.svg',
+    image: asset('projects/warehouse.svg'),
     tags: ['SARIMAX', 'XGBoost', 'ILP', 'Optimization'],
     link: null,
   },
