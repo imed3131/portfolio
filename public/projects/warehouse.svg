@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c1929"/><stop offset="1" stop-color="#0f2a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g)"/>
+  <rect x="90" y="120" width="160" height="140" rx="10" fill="#071422" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="110" y="150" width="50" height="40" rx="4" fill="#0ea5e9" opacity="0.6"/>
+  <rect x="175" y="150" width="50" height="40" rx="4" fill="#3b82f6" opacity="0.5"/>
+  <rect x="110" y="205" width="50" height="40" rx="4" fill="#22d3ee" opacity="0.4"/>
+  <rect x="175" y="205" width="50" height="40" rx="4" fill="#60a5fa" opacity="0.45"/>
+  <text x="170" y="280" text-anchor="middle" fill="#7dd3fc" font-family="Outfit,sans-serif" font-size="12">WH-A</text>
+  <rect x="320" y="100" width="160" height="160" rx="10" fill="#071422" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="340" y="130" width="50" height="50" rx="4" fill="#3b82f6" opacity="0.7"/>
+  <rect x="405" y="130" width="50" height="50" rx="4" fill="#0ea5e9" opacity="0.55"/>
+  <rect x="340" y="195" width="50" height="50" rx="4" fill="#38bdf8" opacity="0.5"/>
+  <rect x="405" y="195" width="50" height="50" rx="4" fill="#1e40af" opacity="0.6"/>
+  <text x="400" y="285" text-anchor="middle" fill="#93c5fd" font-family="Outfit,sans-serif" font-size="12">WH-B</text>
+  <rect x="550" y="120" width="160" height="140" rx="10" fill="#071422" stroke="#22d3ee" stroke-width="2"/>
+  <rect x="570" y="150" width="50" height="40" rx="4" fill="#22d3ee" opacity="0.55"/>
+  <rect x="635" y="150" width="50" height="40" rx="4" fill="#3b82f6" opacity="0.5"/>
+  <rect x="570" y="205" width="50" height="40" rx="4" fill="#60a5fa" opacity="0.45"/>
+  <rect x="635" y="205" width="50" height="40" rx="4" fill="#0ea5e9" opacity="0.5"/>
+  <text x="630" y="280" text-anchor="middle" fill="#7dd3fc" font-family="Outfit,sans-serif" font-size="12">WH-C</text>
+  <path d="M250 180 L320 160" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+  <path d="M480 160 L550 180" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
+  <polyline points="120,320 200,300 280,310 360,270 440,290 520,250 600,275 680,240" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="400" y="400" text-anchor="middle" fill="#7dd3fc" font-family="Outfit,sans-serif" font-size="20" font-weight="600">Multi-Warehouse AI</text>
+</svg>
